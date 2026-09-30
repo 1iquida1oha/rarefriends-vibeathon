@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRIEND LIFE</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#10051f,#182b24,#090b18);
+  color:white;
+  display:flex;
+  justify-content:center;
+  padding:18px;
+}
+.app{
+  width:100%;
+  max-width:480px;
+  background:rgba(10,10,20,.9);
+  border:2px solid #7cffc4;
+  border-radius:24px;
+  padding:20px;
+  box-shadow:0 0 30px rgba(124,255,196,.25);
+}
+h1{
+  text-align:center;
+  margin:5px 0;
+  font-size:34px;
+  letter-spacing:3px;
+}
+.subtitle{
+  text-align:center;
+  color:#b9c7ff;
+  margin-bottom:18px;
+}
+.friend{
+  text-align:center;
+  padding:20px;
+  border-radius:20px;
+  background:linear-gradient(145deg,#241047,#102e2b);
+  margin-bottom:16px;
+}
+.avatar{
+  width:180px;
+  height:180px;
+  margin:auto;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:95px;
+  background:radial-gradient(circle,#7cffc4,#5030a0 60%,#171225);
+  box-shadow:0 0 35px #7cffc4;
+}
+.name{
+  font-size:24px;
+  font-weight:bold;
+  margin-top:12px;
+}
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:15px 0;
+}
+.stat{
+  background:#171927;
+  padding:10px;
+  border-radius:12px;
+}
+.bar{
+  height:9px;
+  background:#303344;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:6px;
+}
+.fill{
+  height:100%;
+  width:70%;
+  background:#7cffc4;
+  transition:.3s;
+}
+.actions{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+button{
+  border:1px solid #7cffc4;
+  background:#15172a;
+  color:white;
+  padding:13px;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:bold;
+}
+button:active{transform:scale(.97)}
+.custom{
+  margin-top:15px;
+  padding-top:15px;
+  border-top:1px solid #33384a;
+}
+input,select{
+  width:100%;
+  padding:12px;
+  margin:7px 0;
+  border-radius:10px;
+  border:0;
+}
+.message{
+  text-align:center;
+  color:#7cffc4;
+  min-height:24px;
+  margin:12px 0 0;
+}
+.footer{
+  text-align:center;
+  margin-top:18px;
+  font-size:12px;
+  color:#8991aa;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<h1>FRIEND LIFE</h1>
+<div class="subtitle">Your Rare Friend. Your home. Your story.</div>
+
+<div class="friend">
+  <div class="avatar" id="avatar">👾</div>
+  <div class="name" id="friendName">My Rare Friend</div>
+
+  <div class="stats">
+    <div class="stat">
+      ❤️ Happiness
+      <div class="bar"><div class="fill" id="happy"></div></div>
+    </div>
+    <div class="stat">
+      ⚡ Energy
+      <div class="bar"><div class="fill" id="energy"></div></div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button onclick="pet()">❤️ Pet</button>
+    <button onclick="feed()">🍖 Feed</button>
+    <button onclick="wash()">🛁 Wash</button>
+    <button onclick="play()">🎮 Play</button>
+  </div>
+
+  <div class="message" id="message">Your Friend is waiting for you.</div>
+</div>
+
+<div class="custom">
+  <strong>✏️ Customize Your Friend</strong>
+  <input id="nameInput" placeholder="Give your Friend a name">
+
+  <select id="vibe">
+    <option value="neon">🌈 Neon</option>
+    <option value="island">🌴 Island</option>
+    <option value="cosmic">🌌 Cosmic</option>
+    <option value="shadow">🖤 Shadow</option>
+  </select>
+
+  <button onclick="customize()" style="width:100%">✨ Save Friend</button>
+</div>
+
+<div class="footer">
+  FRIEND LIFE • Rare Friends ecosystem prototype
+</div>
+
+</div>
+
+<script>
+let happiness=70;
+let energy=70;
+
+function update(){
+  happiness=Math.max(0,Math.min(100,happiness));
+  energy=Math.max(0,Math.min(100,energy));
+  document.getElementById("happy").style.width=happiness+"%";
+  document.getElementById("energy").style.width=energy+"%";
+}
+
+function say(text){
+  document.getElementById("message").textContent=text;
+}
+
+function pet(){
+  happiness+=10;
+  say("❤️ Your Friend loved that!");
+  update();
+}
+
+function feed(){
+  happiness+=6;
+  energy+=12;
+  say("🍖 Yum! Your Friend is feeling better.");
+  update();
+}
+
+function wash(){
+  happiness+=5;
+  say("🛁 Fresh and clean!");
+  update();
+}
+
+function play(){
+  if(energy<15){
+    say("😴 Your Friend needs some rest.");
+    return;
+  }
+  happiness+=15;
+  energy-=15;
+  say("🎮 That was fun!");
+  update();
+}
+
+function customize(){
+  const name=document.getElementById("nameInput").value.trim();
+  const vibe=document.getElementById("vibe").value;
+
+  if(name){
+    document.getElementById("friendName").textContent=name;
+  }
+
+  const avatar=document.getElementById("avatar");
+
+  if(vibe==="island"){
+    avatar.textContent="🌺";
+    avatar.style.background="radial-gradient(circle,#7cffc4,#176b52 60%,#10241e)";
+  }
+
+  if(vibe==="cosmic"){
+    avatar.textContent="👽";
+    avatar.style.background="radial-gradient(circle,#d9a7ff,#442080 60%,#090313)";
+  }
+
+  if(vibe==="shadow"){
+    avatar.textContent="🖤";
+    avatar.style.background="radial-gradient(circle,#777,#171717 60%,#000)";
+  }
+
+  if(vibe==="neon"){
+    avatar.textContent="👾";
+    avatar.style.background="radial-gradient(circle,#7cffc4,#5030a0 60%,#171225)";
+  }
+
+  say("✨ Your Friend has been customized!");
+}
+
+update();
+</script>
+
+</body>
+</html>
