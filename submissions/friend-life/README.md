@@ -100,4 +100,4 @@ Repository: https://github.com/spokesz/rarefriends-vibeathon/
 
 Project: FRIEND LIFE
 
-Demo: Coming soon / prototype access
+https://1iquida1oha.github.io/rarefriends-vibeathon/
