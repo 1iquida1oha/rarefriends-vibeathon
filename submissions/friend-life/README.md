@@ -66,6 +66,21 @@ The prototype is being developed to test the core interaction model and establis
 
 Some features may remain experimental or incomplete during this stage.
 
+## How to Play
+
+1. Open the playable demo on a phone or desktop browser.
+2. The Friend starts with a Happiness and Energy level.
+3. Use PET, FEED, WASH, and PLAY to interact with your Friend.
+4. Watch Happiness and Energy change as you interact.
+5. Enter a name and choose a style/vibe, then select SAVE STYLE.
+6. PLAY increases progression and demonstrates the prototype's simple leveling interaction.
+
+### Controls
+
+Touch/click the on-screen buttons on mobile or desktop. No installation is required.
+
+All rewards, $RF values, and progression shown in this prototype are simulated and are not connected to live contracts.
+
 🛠️ Technology
 
 FRIEND LIFE is being developed as a web-based interactive experience with Rare Friends ecosystem integration.
